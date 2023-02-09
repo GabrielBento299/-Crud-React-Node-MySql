@@ -22,11 +22,10 @@ export function UsersProvider({ children }) {
       setIsloading(true);
       const { data } = await api.get('/users');
       setUsers(data.sort((a, b) => (a.nome > b.nome ? 1 : -1)));
-
-      // setOrder(response.data.sort((a, b) => (a.name > b.name ? 1 : -1)));
-      setIsloading(false);
     } catch (error) {
       toast.error(error);
+    } finally {
+      setIsloading(false);
     }
   }
 
@@ -41,10 +40,13 @@ export function UsersProvider({ children }) {
 
   async function updateUser(usersName) {
     try {
+      setIsloading(true);
       const { data } = await api.put(`/users/${onEdit.id}`, usersName);
       toast.success(data);
     } catch (error) {
       toast.error(error);
+    } finally {
+      setIsloading(false);
     }
   }
 
@@ -62,9 +64,10 @@ export function UsersProvider({ children }) {
       setUsers(newArray);
     } catch (error) {
       toast.error(error);
+    } finally {
+      setIsloading(false);
+      setOnEdit(null);
     }
-    setIsloading(false);
-    setOnEdit(null);
   }
 
   return (

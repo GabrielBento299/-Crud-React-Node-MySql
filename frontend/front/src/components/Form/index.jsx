@@ -15,7 +15,7 @@ export default function Form() {
   const ref = useRef();
 
   // eslint-disable-next-line consistent-return
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
 
     const user = ref.current;
@@ -46,7 +46,6 @@ export default function Form() {
   return (
     // eslint-disable-next-line react/jsx-no-bind
     <FormContainer ref={ref} onSubmit={handleSubmit}>
-      {isLoading && <p>Carregando...</p>}
       <InputGroup>
         <label>Nome</label>
         <Input
@@ -83,7 +82,7 @@ export default function Form() {
         />
       </InputGroup>
 
-      <Button type="submit">Cadastrar</Button>
+      {!isLoading ? <Button type="submit">Cadastrar</Button> : <Button disabled type="submit">Carregando...</Button>}
     </FormContainer>
   );
 }

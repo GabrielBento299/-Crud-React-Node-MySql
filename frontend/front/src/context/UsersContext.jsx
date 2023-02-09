@@ -29,19 +29,22 @@ export function UsersProvider({ children }) {
     }
   }
 
-  async function createUser(usersName) {
+  async function createUser(usersValue) {
     try {
-      const { data } = await api.post('/users', usersName);
+      setIsloading(true);
+      const { data } = await api.post('/users', usersValue);
       toast.success(data);
     } catch (error) {
       toast.error(error);
+    } finally {
+      setIsloading(false);
     }
   }
 
-  async function updateUser(usersName) {
+  async function updateUser(usersEditValue) {
     try {
       setIsloading(true);
-      const { data } = await api.put(`/users/${onEdit.id}`, usersName);
+      const { data } = await api.put(`/users/${onEdit.id}`, usersEditValue);
       toast.success(data);
     } catch (error) {
       toast.error(error);

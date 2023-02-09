@@ -15,7 +15,7 @@ export default function Form() {
   const ref = useRef();
 
   // eslint-disable-next-line consistent-return
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     const user = ref.current;
@@ -25,13 +25,13 @@ export default function Form() {
     // }
 
     if (!onEdit) {
-      const usersName = {
+      const usersValue = {
         name: user.name.value,
         email: user.email.value,
         phone: user.phone.value,
         date: user.date.value,
       };
-      createUser(usersName);
+      await createUser(usersValue);
     }
 
     user.name.value = '';

@@ -16,19 +16,19 @@ export default function ModalPage() {
 
   const ref = useRef();
 
-  function teste(e) {
+  async function teste(e) {
     e.preventDefault();
 
     if (onEdit) {
       const user = ref.current;
 
-      const usersName = {
+      const usersEditValue = {
         name: user.name.value,
         email: user.email.value,
         phone: user.phone.value,
         date: user.date.value,
       };
-      updateUser(usersName);
+      await updateUser(usersEditValue);
     }
     setOnEdit(null);
     getUsers();

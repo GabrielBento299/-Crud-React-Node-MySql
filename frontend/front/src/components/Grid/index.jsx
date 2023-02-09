@@ -39,7 +39,7 @@ export default function Grid() {
                <Tr key={user.id}>
                  <Td width="20%">{user.name}</Td>
                  <Td width="25%">{user.email}</Td>
-                 <Td width="15%" onlyWeb>{user.phone}</Td>
+                 <Td width="25%" onlyWeb>{user.phone}</Td>
                  <Td width="20%" onlyWeb>{user.date}</Td>
                  <Td alignCenter width="5%"> <FaEdit onClick={() => handleUpdate(user)} /></Td>
                  <Td alignCenter width="5%"> <FaTrash onClick={() => handleDelete(user.id)} /></Td>
